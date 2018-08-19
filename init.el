@@ -14,7 +14,22 @@
 (use-package solarized-theme
   :ensure t
   :init
-(load-theme 'solarized-dark))
+(load-theme 'solarized-dark t))
+
+(use-package evil
+  :ensure t ;; install the evil package if not installed
+  :init ;; tweak evil's configuration before loading it
+  (setq evil-search-module 'evil-search)
+  (setq evil-ex-complete-emacs-commands nil)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  (setq evil-shift-round nil)
+  (setq evil-want-C-u-scroll t)
+  :config ;; tweak evil after loading it
+  (evil-mode)
+
+  ;; example how to map a command in normal mode (called 'normal state' in evil)
+  (define-key evil-normal-state-map (kbd ", w") 'evil-window-vsplit))
 
 ;; Fullscreen
 
@@ -35,10 +50,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" default)))
- '(package-selected-packages (quote (apropospriate-theme use-package))))
+ '(package-selected-packages (quote (evil use-package solarized-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
